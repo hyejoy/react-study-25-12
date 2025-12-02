@@ -1,0 +1,5 @@
+<type> : <short summary>
+# 📌 WHAT
+# 🎯 WHY
+# 🪄 HOW
+# ⚠️  ETC
