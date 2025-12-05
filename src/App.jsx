@@ -1,16 +1,6 @@
 import "./App.css";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Main from "./components/Main";
+import CourseListCard from "./components/course/CourseListCard";
 
-function App() {
-  return (
-    <>
-      <Header />
-      <Main />
-      <Footer />
-    </>
-  );
+export default function App() {
+  return <CourseListCard />;
 }
-
-export default App;
