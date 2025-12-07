@@ -1,17 +1,43 @@
+import Card from "../Card";
 import CourseItem from "./CourseItem";
 export default function CourseListCard() {
+  const courseList = [
+    {
+      title: "입문자를 위한, HTML&CSS 웹 개발 입문",
+      description: "웹 개발에 필요한 기본 지식을 배웁니다.",
+      thumbnail: "/img/htmlcss.png",
+    },
+    {
+      title: "입문자를 위한, ES6+ 최신 자바스크립트 입문",
+      description: "쉽고! 알찬! 내용을 준비했습니다.",
+      thumbnail: "/img/js.png",
+    },
+    {
+      title: "포트폴리오 사이트 만들고 배포까지!",
+      description: "포트폴리오 사이트를 만들고 배포해 보세요.",
+      thumbnail: "/img/portfolio.png",
+    },
+  ];
+
   return (
     <main>
-      <div className="card">
+      <Card title="강의 목록">
+        {/* Card childern */}
+        {courseList.map((course) => (
+          <CourseItem
+            key={course.title}
+            title={course.title}
+            description={course.description}
+            thumbnail={course.thumbnail}
+          />
+        ))}
+      </Card>
+      {/* <div className="card">
         <div className="card__header">강의 목록</div>
         <div className="card__body">
-          <div className="courses">
-            <CourseItem />
-            <CourseItem />
-            <CourseItem />
-          </div>
+          <div className="courses"></div>
         </div>
-      </div>
+      </div> */}
     </main>
   );
 }
