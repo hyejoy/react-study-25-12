@@ -1,6 +1,6 @@
-function HeartIconBtn({ isFavorite }) {
+function HeartIconBtn({ handleFavorite, isFavorite = false }) {
   return (
-    <button className="btn">
+    <button className="btn" onClick={handleFavorite}>
       {
         <img
           className="btn__img"
@@ -28,15 +28,35 @@ export default function CourseItem({
   isFavorite,
   link,
 }) {
+  // handleItemClick이 실행되는 버블링 막기
+  function handleFavorite(e) {
+    e.stopPropagation();
+    alert(isFavorite ? "좋아요" : "모르겠어요");
+  }
+
+  // handleFavorite 캡쳐링 막기 예시
+  function handleItemClick() {
+    // e.stopPropagation;
+    alert("item click");
+    window.open(link, "_blank"); // 새창열기
+  }
+
   return (
     <>
-      <article className="course">
+      {/* 캡쳐링 동작은 Capture을 뒤에 붙혀주면된다. */}
+      {/* <article className="course" onClickCapture={handleItemClick}> */}
+      <article className="course" onClick={handleItemClick}>
         <img className="course__img" src={thumbnail} alt="" />
         <div className="course__body">
           <div className="course__title">{title}</div>
           <div className="course__description">{description}</div>
           <div className="course__icons">
-            {<HeartIconBtn isFavorite={isFavorite} />}
+            {
+              <HeartIconBtn
+                handleFavorite={handleFavorite}
+                isFavorite={isFavorite}
+              />
+            }
             {<LinkIconBtn link={link} />}
           </div>
         </div>
