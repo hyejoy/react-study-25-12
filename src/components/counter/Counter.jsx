@@ -8,7 +8,9 @@ export default function Counter({ handleTotal }) {
 
   const handleCounter = () => {
     setCounter((prev) => prev + 1);
-    handleTotal();
+    if (handleTotal) {
+      handleTotal();
+    }
   };
   // 상태 , 로직이 포함된경우
   return <button onClick={handleCounter}>counter : {counter}</button>;

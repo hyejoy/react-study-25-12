@@ -1,8 +1,10 @@
 import { useState } from "react";
-import Counter from "./Counter";
+import Counter from "./counter/Counter";
 
 export default function Main() {
   const [total, setTotal] = useState(0);
+  const [flag, setFlag] = useState(false);
+
   const handleTotal = () => {
     setTotal((prev) => prev + 1);
   };
@@ -10,9 +12,13 @@ export default function Main() {
   return (
     <main>
       <p>total Count : {total} </p>
+      <p>flag : {String(flag)} </p>
+      <button onClick={() => setFlag((prev) => !prev)}>toggle falg</button>
       <Counter handleTotal={handleTotal} />
-      <br />
+      <hr />
       <Counter handleTotal={handleTotal} />
+      <hr />
+      <Counter />
     </main>
   );
 }
