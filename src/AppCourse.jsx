@@ -1,5 +1,5 @@
 import "./AppCourse.css";
-import CourseForm from "./components/course/CourseForm";
+import CourseForm_Immer from "./components/course/CourseForm_Immer";
 import CourseListCard from "./components/course/CourseListCard";
 
 const courseList = [
@@ -32,7 +32,7 @@ export default function App() {
     <>
       <main>
         {/* <CourseListCard title="강의목록" courseList={courseList} /> */}
-        <CourseForm />
+        <CourseForm_Immer />
         <CourseListCard title="관심 강의" courseList={favoriteList} />
       </main>
     </>

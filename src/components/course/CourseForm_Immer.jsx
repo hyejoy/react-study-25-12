@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useImmer } from "use-immer";
 import Card from "../Card";
 
 export default function CourseForm() {
-  const [form, setForm] = useState({
+  const [form, updateForm] = useImmer({
     title: "리액트 강의",
     description: "리액트 기초부터 실전까지!",
     info: {
@@ -16,34 +16,18 @@ export default function CourseForm() {
     e.preventDefault();
   }
 
-  const handleTitleChange = (e) => {
-    console.log(e.target.value);
-    setForm({ ...form, title: e.target.value });
-  };
-
-  const handleDescriptionChange = (e) => {
-    console.log(e.target.value);
-    setForm({ ...form, description: e.target.value });
-  };
-
-  // [] 괄호를 객체 정의 안에 사용하여 동적 이름을 가진 프로퍼티를 명시할 수 있다.
-  // 📖 need a lecture
-
+  // 🎯 Immer를 사용하여, 콜백함수로부터 전달받은 인자를 통해 현재 객체를 수정
+  // Immer가 제공하는 draft는 Proxy 객체타입으로, 객체를 원하는 만큼 자유롭게 변경할수있으며,
+  // raft의 어느 부분이 변경되었는지 알아내어 완전히 새로운 객체를 생성함
   const handleChange = (e) => {
-    console.log(e.target.name);
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
+    updateForm((draft) => {
+      draft[e.target.name] = e.target.value;
     });
   };
 
   const handleInfoChange = (e) => {
-    setForm({
-      ...form,
-      info: {
-        ...form.info,
-        [e.target.name]: e.target.value,
-      },
+    updateForm((draft) => {
+      draft.info[e.target.name] = e.target.value;
     });
   };
 
