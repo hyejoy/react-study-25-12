@@ -1,4 +1,4 @@
-import "./App.css";
+import "./AppCourse.css";
 import CourseForm from "./components/course/CourseForm";
 import CourseListCard from "./components/course/CourseListCard";
 
@@ -32,8 +32,8 @@ export default function App() {
     <>
       <main>
         {/* <CourseListCard title="강의목록" courseList={courseList} /> */}
-        <CourseListCard title="관심 강의" courseList={favoriteList} />
         <CourseForm />
+        <CourseListCard title="관심 강의" courseList={favoriteList} />
       </main>
     </>
   );
