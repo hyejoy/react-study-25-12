@@ -11,6 +11,7 @@ export default function CourseForm() {
       skill: "React",
     },
   });
+
   function handlerCourseForm(e) {
     // 리다이렉션 막기
     e.preventDefault();
@@ -18,7 +19,7 @@ export default function CourseForm() {
 
   // 🎯 Immer를 사용하여, 콜백함수로부터 전달받은 인자를 통해 현재 객체를 수정
   // Immer가 제공하는 draft는 Proxy 객체타입으로, 객체를 원하는 만큼 자유롭게 변경할수있으며,
-  // raft의 어느 부분이 변경되었는지 알아내어 완전히 새로운 객체를 생성함
+  // draft의 어느 부분이 변경되었는지 알아내어 완전히 새로운 객체를 생성함
   const handleChange = (e) => {
     updateForm((draft) => {
       draft[e.target.name] = e.target.value;

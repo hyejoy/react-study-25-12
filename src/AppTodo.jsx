@@ -59,6 +59,31 @@ export default function AppTodo() {
     setTodos(doneTodo);
   };
 
+  const handleReverse = () => {
+    // reverse 함수 (뮤터블 함수)는 원본데이터가 변경되기때문에, 새로운 배열을 생성한 후에 사용함
+    // const nextTodo = [...todos];
+    // nextTodo.reverse();
+
+    // toReversed 함수 (이뮤터블 함수)는 원본데이터가 변경되지않고, 새로운 배열을 생성한다.
+    const nextTodo = todos.toReversed();
+
+    setTodos(nextTodo);
+  };
+
+  // 🎯 function howToUseImmer(id, boolean) {
+  // const myList = [
+  //   { id: 1, title: "Mona Lisa", seen: false },
+  //   { id: 2, title: "Starry Night", seen: true },
+  // ];
+
+  //   updateMyList(draft => {
+  //     const artwork = draft.find(a =>
+  //       a.id === id;
+  //     )
+  //     artwork.seen = boolean.;
+  //   })
+  // }
+
   return (
     <>
       <h2>할일목록</h2>
@@ -81,6 +106,7 @@ export default function AppTodo() {
         </select>
         <button onClick={handleAddTodoByIndex}>{insertAt}번째 추가</button>
       </div>
+      <button onClick={handleReverse}>Reverse</button>
       <div> Preview: {todoText} </div>
       <TodoList
         todos={todos}
