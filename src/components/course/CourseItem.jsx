@@ -22,16 +22,18 @@ function LinkIconBtn({ link }) {
 }
 
 export default function CourseItem({
+  id,
   title,
   description,
   thumbnail,
   isFavorite,
   link,
+  onFavorite,
 }) {
   // handleItemClick이 실행되는 버블링 막기
   function handleFavorite(e) {
     e.stopPropagation();
-    alert(isFavorite ? "좋아요" : "모르겠어요");
+    onFavorite(id, !isFavorite);
   }
 
   // handleFavorite 캡쳐링 막기 예시
