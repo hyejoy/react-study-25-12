@@ -1,19 +1,12 @@
-import { useReducer, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import TodoList from "./todo/TodoList";
-import todoReducer from "./reducer/todo-reducer";
+import todoImmerReducer from "./reducer/todo-immerReducers";
+import { useImmerReducer } from "use-immer";
 
+// reducer 사용
 export default function AppTodo() {
-  // reducer 사용
-  /**
-   * 🎯 useReducer
-   * const [tasks, dispatch] = useReducer(taskReducer, initialTasks);
-   * 첫번째 인자 : 작성한 Reducer 함수
-   * 두번째 인자 : 관리할 상태의 초기값
-   * 반환한 배열 첫번째 인자 : 관리할 상태
-   * 반환한 배열 두번째 인자 : reducer함수를 사용할 dispatch 함수를 받음
-   */
-  const [todos, dispatch] = useReducer(todoReducer, [
+  const [todos, dispatch] = useImmerReducer(todoImmerReducer, [
     { id: 0, text: "HTML&CSS 공부하기", done: false },
     { id: 1, text: "자바스크립트 공부하기", done: false },
   ]);
@@ -48,6 +41,7 @@ export default function AppTodo() {
       nextId: todos.length,
       todoText,
     });
+    setTodoText("");
   };
 
   // [3] deleted
