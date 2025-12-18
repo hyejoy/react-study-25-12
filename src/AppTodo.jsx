@@ -11,6 +11,7 @@ export default function AppTodo() {
 
   const [insertAt, setInsertAt] = useState(todos.length - 1);
 
+  // [1] added
   const handleAddTodo = () => {
     if (!todoText.length) return;
     // 상태변경은 새로운 메모리를 할당해서 업데이트 해야한다.
@@ -21,6 +22,7 @@ export default function AppTodo() {
     setTodoText(""); // null, undefined [x]
   };
 
+  // [2]  added_index
   const handleAddTodoByIndex = () => {
     if (!todoText) return;
     const nextId = todos.length;
@@ -46,11 +48,13 @@ export default function AppTodo() {
     setTodoText(e.target.value);
   };
 
+  // [3] deleted
   const handleDelteTodo = (deleteId) => {
     const newTodos = todos.filter((todo) => todo.id !== deleteId);
     setTodos(newTodos);
   };
 
+  // [4] done
   const handleToggleTodo = (id, done) => {
     console.log("실행");
     const doneTodo = todos.map((todo) =>
@@ -59,6 +63,7 @@ export default function AppTodo() {
     setTodos(doneTodo);
   };
 
+  // [5] reverse
   const handleReverse = () => {
     // reverse 함수 (뮤터블 함수)는 원본데이터가 변경되기때문에, 새로운 배열을 생성한 후에 사용함
     // const nextTodo = [...todos];
