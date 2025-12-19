@@ -27,8 +27,13 @@ export default function AppTodo() {
     setTodoText("");
   };
 
-  const handleEnterTodo = (e) => {
-    if (e.key === "Enter") {
+  const handleAddTodoOnEnter = (e) => {
+    // 문자 조합중인지 알아내는 속성
+    console.log("isComposint:", e.nativeEvent.isComposing);
+
+    // 문자가 조합중이 아닐때만 등록
+    // 브라우저 버전이 상이해 이벤트가 2번발생하는 이슈(사용자마다 나타날수도, 안나타날수도 있음)로 인해 처리
+    if (e.key === "Enter" && !e.nativeEvent.isComposing) {
       console.log(e.key);
       handleAddTodo();
     }
@@ -76,7 +81,7 @@ export default function AppTodo() {
           value={todoText}
           type="text"
           onChange={handleTodoTextChange}
-          onKeyDown={handleEnterTodo}
+          onKeyDown={handleAddTodoOnEnter}
         />
         <button onClick={handleAddTodo}>추가</button>
       </div>

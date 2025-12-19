@@ -37,9 +37,8 @@ export default function AppTodo() {
     console.log(newTodos);
   };
 
-  const handleEnterTodo = (e) => {
+  const handleAddTodoOnEnter = (e) => {
     if (e.key === "Enter") {
-      console.log(e.key);
       handleAddTodo();
     }
   };
@@ -97,7 +96,7 @@ export default function AppTodo() {
           value={todoText}
           type="text"
           onChange={handleTodoTextChange}
-          onKeyDown={handleEnterTodo}
+          onKeyDown={handleAddTodoOnEnter}
         />
         <button onClick={handleAddTodo}>추가</button>
       </div>
