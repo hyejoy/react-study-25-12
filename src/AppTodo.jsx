@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import { TodoProvider } from "./context/TodoContext";
 import AddTodo from "./todo/AddTodo";
 import TodoList from "./todo/TodoList";

@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
+// draft는 immer 객체로 넘겨받음
 export default function todoReducer(draft, action) {
   switch (action.type) {
     case "added": {
