@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { useTodoDispatch } from "../context/TodoContext";
 
-export default function TodoItem({ item }) {
+const TodoItem = ({ item }) => {
+  console.log("todoItem 랜더링");
   const dispatch = useTodoDispatch();
 
   // done
@@ -32,4 +33,6 @@ export default function TodoItem({ item }) {
       <button onClick={() => onDeleteTodo(item.id)}>X</button>
     </label>
   );
-}
+};
+
+export default memo(TodoItem);

@@ -1,6 +1,6 @@
-import { useState, memo, useMemo } from "react";
+import { useState, memo, useMemo, useCallback } from "react";
 // 메모이제이션이 적용되지 않은 컴포넌트
-const RegularComponent = ({ count, items = [] }) => {
+const RegularComponent = ({ count, items = [], onCount }) => {
   console.log("RegularComponent 렌더링");
   return (
     <fieldset>
@@ -11,6 +11,7 @@ const RegularComponent = ({ count, items = [] }) => {
           <li key={item.id}>{item.text}</li>
         ))}
       </ul>
+      <button onClick={onCount}>Count 증가</button>
     </fieldset>
   );
 };
@@ -47,6 +48,15 @@ export default function AppMemo() {
     return courses.filter((course) => course.level === 0);
   }, [courses]);
 
+  // otherState를 변경하여도 해당 함수는 새로운 주소값을 가지므로
+  // props로 handleCount를 넘겨받으면 메모이제이션이 일어나지않음 (리랜더링)
+  const handleCount_noCallback = () => setCount(count + 1);
+
+  // 기타상태 변경시에는 메모이제이션이 적용됨
+  const handleCount = useCallback(() => {
+    setCount(count + 1);
+  }, [count]);
+
   return (
     <div>
       <h2>컴포넌트 메모이제이션</h2>
@@ -55,8 +65,16 @@ export default function AppMemo() {
         기타 상태 변경
       </button>
       <hr />
-      <RegularComponent count={count} items={beginnerCourses} />
-      <MemoizedComponent count={count} items={beginnerCourses} />
+      <RegularComponent
+        count={count}
+        items={beginnerCourses}
+        onCount={handleCount}
+      />
+      <MemoizedComponent
+        count={count}
+        items={beginnerCourses}
+        onCount={handleCount}
+      />
     </div>
   );
 }
